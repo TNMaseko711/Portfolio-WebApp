@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+  <div>
+    <h2>Convert between length, weight, and temperature.</h2>
+    <p>Pick a converter below, enter a value, and see the result instantly.</p>
+  </div>
+</section>
+
+<section class="card-grid">
+  <article class="card">
+    <h3>Length</h3>
+    <p>Millimeter to mile and every stop in between.</p>
+    <a class="button" href="{{ url_for('length') }}">Use length converter</a>
+  </article>
+  <article class="card">
+    <h3>Weight</h3>
+    <p>Milligram to pound conversions for quick comparisons.</p>
+    <a class="button" href="{{ url_for('weight') }}">Use weight converter</a>
+  </article>
+  <article class="card">
+    <h3>Temperature</h3>
+    <p>Celsius, Fahrenheit, and Kelvin made simple.</p>
+    <a class="button" href="{{ url_for('temperature') }}">Use temperature converter</a>
+  </article>
+</section>
+{% endblock %}
