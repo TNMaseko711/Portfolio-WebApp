@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="converter-header">
+  <h2>{{ config.title }}</h2>
+  <p>Enter a value and select units to convert your {{ unit_label.lower() }} measurements.</p>
+</section>
+
+<form class="converter-form" method="post" action="">
+  <label>
+    Value to convert
+    <input
+      type="number"
+      step="any"
+      name="value"
+      value="{{ selected.get('value', '') }}"
+      placeholder="Enter a number"
+      required
+    />
+  </label>
+
+  <div class="form-row">
+    <label>
+      From
+      <select name="from_unit" required>
+        {% for unit in config.units %}
+        <option value="{{ unit }}" {% if selected.get('from_unit') == unit %}selected{% endif %}>
+          {{ unit }}
+        </option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>
+      To
+      <select name="to_unit" required>
+        {% for unit in config.units %}
+        <option value="{{ unit }}" {% if selected.get('to_unit') == unit %}selected{% endif %}>
+          {{ unit }}
+        </option>
+        {% endfor %}
+      </select>
+    </label>
+  </div>
+
+  <button type="submit" class="button">Convert</button>
+</form>
+
+{% if result is not none %}
+<section class="result">
+  <h3>Converted Value</h3>
+  <p>{{ selected.value }} {{ selected.from_unit }} = <strong>{{ "%.4f"|format(result) }}</strong> {{ selected.to_unit }}</p>
+</section>
+{% endif %}
+{% endblock %}
